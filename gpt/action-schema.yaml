@@ -1,0 +1,47 @@
+openapi: 3.1.0
+info:
+  title: interview-bank reader
+  description: 读取 yeyunu/interview-bank 私有题库
+  version: 1.0.0
+servers:
+  - url: https://api.github.com
+paths:
+  /repos/yeyunu/interview-bank/contents/{dir}:
+    get:
+      operationId: listFiles
+      summary: 列出目录下的题目文件（dir 为 questions 或 archive）
+      parameters:
+        - name: dir
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [questions, archive]
+      responses:
+        "200":
+          description: 文件名列表（JSON 数组，取 name 字段）
+  /repos/yeyunu/interview-bank/contents/{dir}/{filename}:
+    get:
+      operationId: getFile
+      summary: 读取某个题目文件的原文内容
+      parameters:
+        - name: dir
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [questions, archive]
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: Accept
+          in: header
+          required: false
+          schema:
+            type: string
+            default: application/vnd.github.raw+json
+      responses:
+        "200":
+          description: 文件 markdown 原文（若返回 JSON 且 content 为 base64 则需解码）
