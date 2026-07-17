@@ -1,10 +1,11 @@
 openapi: 3.1.0
 info:
   title: interview-bank reader
-  description: 读取 yeyunu/interview-bank 私有题库
-  version: 1.0.0
+  description: 无需登录，读取公开的 yeyunu/interview-bank 面试题库
+  version: 1.1.0
 servers:
   - url: https://api.github.com
+security: []
 paths:
   /repos/yeyunu/interview-bank/contents/{dir}:
     get:
@@ -20,6 +21,23 @@ paths:
       responses:
         "200":
           description: 文件名列表（JSON 数组，取 name 字段）
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    path:
+                      type: string
+                    type:
+                      type: string
+                    download_url:
+                      type: [string, "null"]
+        "404":
+          description: 目录不存在
   /repos/yeyunu/interview-bank/contents/{dir}/{filename}:
     get:
       operationId: getFile
@@ -45,3 +63,21 @@ paths:
       responses:
         "200":
           description: 文件 markdown 原文（若返回 JSON 且 content 为 base64 则需解码）
+          content:
+            application/vnd.github.raw+json:
+              schema:
+                type: string
+            application/json:
+              schema:
+                type: object
+                properties:
+                  name:
+                    type: string
+                  path:
+                    type: string
+                  encoding:
+                    type: string
+                  content:
+                    type: string
+        "404":
+          description: 文件不存在

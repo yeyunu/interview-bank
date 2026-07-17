@@ -49,6 +49,7 @@
 - 平时：把当天遇到或想到的题追加到 `questions/当天日期.md`，然后提交并推送。
 - 车上：打开 ChatGPT 的「面试陪练」GPT，进入语音模式，说“抽今天的题”或“抽历史题”。
 - GPT 配置：将 [`gpt/instructions.md`](gpt/instructions.md) 和 [`gpt/action-schema.yaml`](gpt/action-schema.yaml) 分别填入 GPT Instructions 与 Actions。
+- Action 认证：仓库是公开的，GPT 编辑器中的 Authentication 必须选择 `None`；不要继续使用旧 PAT。
 
 ## 资料来源
 
