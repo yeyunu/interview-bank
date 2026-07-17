@@ -2,7 +2,7 @@
 
 tags: #agent面试 #RAG #Agent #MindClaw #ClawCodex
 
-> 说明：这份是把 `Agent面试题_宽松版_少漏题.md` 里的“候选 1”问题，套到我们自己的 MindClaw / ClawCodex 项目里。  
+> 说明：这份是把原始面经中的“候选 1”问题，套到我们自己的 MindClaw / ClawCodex 项目里。
 > 原始 OCR 里有一些噪声，比如日期、章节号、答案片段，这里只保留能转成面试问题的部分。
 
 ## 项目总定位
